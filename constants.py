@@ -53,6 +53,7 @@ PARTICLE_MASS		    = 200		#Massa default para a particula
 PARTICLE_ANGLE              = math.pi		#Angulacao de movimento.
 PARTICLE_FILL               = False		#Particulas preenchidas. False = Sim. True = Nao.
 PARTICLE_COLLISION	    = False		#Colisao entre particulas. (Baixo desempenho O(n2), Max 200)
+PARTICLE_ELASTICITY 		= 1
 ##################
 #                #
 #   FISICA       #
