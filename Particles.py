@@ -80,15 +80,17 @@ class Particle:
         pass
 
     def accelerate(self, vector):
+        #print vector
         (self.angle, self.speed) = addVectors((self.angle, self.speed), vector)
 
-    def mouseMove(self, x, y):
+    def mouseMove(self):
         """ Change angle and speed to move towards a given point """
-
-        dx = x - self.x
-        dy = y - self.y
+        #global MOUSEX, MOUSEY
+        #print MOUSEX, MOUSEY
+        dx = MOUSEX - self.x
+        dy = MOUSEY - self.y
         self.angle = 0.5*math.pi + math.atan2(dy, dx)
-        self.speed = math.hypot(dx, dy) * 0.1
+        #self.speed = math.hypot(dx, dy) * 0.1
     
     def move (self):
         #(self.angle, self.speed) = addVectors((self.angle, self.speed), GRAVITY)
@@ -130,7 +132,8 @@ class Environment:
         'move': (1, lambda p: p.move()),
         'air_resistance': (1, lambda p: p.drag()),
         'bounce': (1, lambda p: self.bounce(p)),
-        'accelerate': (1, lambda p: p.accelerate(self.acceleration)),
+        'accelerate': (1, lambda p: p.accelerate((self.acceleration, p.angle))),
+        'mouseMove': (1, lambda p: p.mouseMove()),
         'collide': (2, lambda p1, p2: collide(p1, p2)),
         'attract': (2, lambda p1, p2: p1.attract(p2)),
         'combine': (2, lambda p1, p2: combine(p1, p2))}
@@ -142,6 +145,27 @@ class Environment:
                 self.particle_functions1.append(f)
             elif n == 2:
                 self.particle_functions2.append(f)
+            else:
+                print "No such function: ", func
+
+    def inList (self, function):
+        try:
+            (n, f) = self.function_dict.get(function, (-1, None))
+            if n == 1:
+                return self.particle_functions1.index(f)
+            elif n == 2:
+                return self.particle_functions2.index(f)
+        except ValueError:
+            return -1
+            
+
+    def removeFunctions (self, function_list):
+        for func in function_list:
+            (n, f) = self.function_dict.get(func, (-1, None))
+            if n == 1:
+                self.particle_functions1.remove(f)
+            elif n == 2:
+                self.particle_functions2.remove(f)
             else:
                 print "No such function: ", func
 

@@ -32,7 +32,7 @@ TEXT_COLOR                  = (255,0,0)	    #Cor do texto desenhado
 R 						= 0
 G 						= 1
 B 						= 2
-MOUSEX, MOUSEY 		    = 0,0  						#Posicao X e Y do Mouse.
+MOUSEX, MOUSEY 		    = 600,400  					#Posicao X e Y do Mouse.
 EFFECT 			    	= ""						#Nome do efeito sendo aplicado.
 EFFECT_INDEX 		    = 0							#Indice para a funcao de movimentacao das particulas. 0 = default
 
@@ -50,9 +50,6 @@ PARTICLE_FILL           = False			#Particulas preenchidas. False = Sim. True = N
 #   FISICA       #
 #                #
 ##################
-GRAVITY                     = (math.pi, 0.000) #Direcao(rad) e velocidade
-AIR_MASS 		    		= 0.2		       #Massa do ar. Constante para a resistencia do ar. 0 = OFF. 'Energia gasta para se movimentar.'
-ELASTICITY                  = 0	               #Energia perdida ao colidir com laterais [0,1[. Leva em consideracao a Massa. (0.003 e interessante)
 ENERGY_LOSS_COLLISION 	    = 1 			   #Energia perdida ao colidir com outras particulas. [0,1]
 COLLISION_WITH_MASS	   		= False	       	   #Se a colisao leva em consideracao a massa.
 SIZE_PROPORTIONAL           = False            #Energia perdida ao se movimentar proporcional ao tamanho?
