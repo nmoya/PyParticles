@@ -137,7 +137,7 @@ class Environment:
         'collide': (2, lambda p1, p2: collide(p1, p2)),
         'attract': (2, lambda p1, p2: p1.attract(p2)),
         'combine': (2, lambda p1, p2: combine(p1, p2))}
-
+        
     def addFunctions(self, function_list):
         for func in function_list:
             (n, f) = self.function_dict.get(func, (-1, None))

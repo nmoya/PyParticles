@@ -9,6 +9,7 @@ def escreve (msg, pos):
     textpos.topleft = pos
     SCREEN.blit(text, textpos)
 
+
 pygame.init()
 Clock = pygame.time.Clock()
 SCREEN = pygame.display.set_mode(Particles.RESOLUTION)
@@ -20,10 +21,21 @@ fonte = pygame.font.Font('lucon.ttf', 18)
 env = Particles.Environment(Particles.RESOLUTION, acceleration = 0.000)
 
 
-env.addFunctions(['move',  'bounce', 'attract', 'collide'])
+'''
+Environment options:
+- Move
+- Air Resistance
+- Bounce
+- Accelerate
+- MouseMove
+- Collide
+- Attract
+- Combine
+'''
+env.addFunctions(['move', 'attract', "combine"])
 for p in range(100):
-    env.addParticles(size=4
-                 ,colour=(random.randint(0,255),random.randint(0,255),random.randint(0,255)))
+    #speed, density, mass, (x, y), speed, angle, colour, elasticity, air_resistance, fill
+    env.addParticles(size=1, colour=(255, 255, 255))
 
     
 running = True
@@ -72,7 +84,6 @@ while running:
         if p in env.particles:
             env.particles.remove(p)
         
-
 
     escreve(Particles.EFFECT, (2, 2))
     escreve("FPS: " + str(Clock.get_fps()), (2,20))
